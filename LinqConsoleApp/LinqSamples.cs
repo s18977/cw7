@@ -348,8 +348,12 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad10Button_Click()
         {
-            //var res = (from emp in Emps.Union(Depts)
-            //           select "Brak Wartosci", null, null);
+            var res = Emps.Select(x => (x.Ename, x.Job, x.HireDate)).Union(Emps.Select(y => (Ename: "Brak Wartości", Job: (string)null, HireDate: (DateTime?)null)));
+
+            foreach(var emp in res)
+            {
+                Console.WriteLine(emp);
+            }
         }
 
         //Znajdź pracownika z najwyższą pensją wykorzystując metodę Aggregate()
